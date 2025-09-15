@@ -1,24 +1,16 @@
-[project]
+[tool.poetry]
 name = "agentic"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "ylich",email = "vyboluarte@minsait.com"}
-]
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "fastapi (>=0.116.1,<0.117.0)",
-    "uvicorn",
-    "openai (>=1.97.1,<2.0.0)"
-]
+authors = ["ylich <vyboluarte@minsait.com>"]
+package-mode= false
 
-package-mode = false
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.dependencies]
+python = ">3.11"
+fastapi = ">=0.116.1,<0.117.0"
+uvicorn = "*"
+openai = ">=1.97.1,<2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.3.0"
 black = "^25.1.0"
-
