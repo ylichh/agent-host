@@ -1,27 +1,27 @@
 import json
 
-
-from agents.abstract_agent import Agent
-from tools.tool_abstract import Tool
+from ..domain.services.tools.i_tool import Tool
 
 # Assuming WheaterAgent is defined in tools/wheather.py
-from memory.memory_manager import (
-    MemoryManagerInterface,
+from ..domain.repositories.i_memory import (
+    IMemory,
 )  # Assuming you have a memory manager defined
-from LLMManager.llm_manager_i import LLMManagerInterface
+from ..domain.services.llm_manager.i_llm_manager import ILLMManager
 
 GPT_MODEL = "gpt-4.1"
 
-AGENT_PROMPT = """Eres un asistente que coordina herramientas para responder preguntas de los usuarios.
-Debes decidir si es necesario utilizar una herramienta y qué herramienta utilizar para responder la pregunta del usuario"""
+AGENT_PROMPT = """Eres un asistente que coordina herramientas 
+para responder preguntas de los usuarios.
+Debes decidir si es necesario utilizar una herramienta y qué herramienta 
+utilizar para responder la pregunta del usuario"""
 
 
-class Supervisor(Agent):
+class Supervisor:
 
     def __init__(
         self,
-        llm_manager: LLMManagerInterface,
-        memory_manager: MemoryManagerInterface,
+        llm_manager: ILLMManager,
+        memory_manager: IMemory,
         agent_prompt,
     ):
         self.name = "Supervisor"

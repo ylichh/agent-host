@@ -1,5 +1,9 @@
-from tools.tool_schemas import FunctionSchema, Parameters, Property
-from tools.tool_abstract import Tool
+from ...domain.services.tools.i_tool import Tool
+from ...domain.services.tools.tool_schemas import (
+    Parameters,
+    Property,
+    FunctionSchema,
+)
 
 
 class WheaterAgent(Tool):
@@ -20,7 +24,8 @@ class WheaterAgent(Tool):
                 type="object",
                 properties={
                     "location": Property(
-                        type="string", description="The location to get the weather for"
+                        type="string",
+                        description="The location to get the weather for",
                     ),
                 },
                 required=["location"],

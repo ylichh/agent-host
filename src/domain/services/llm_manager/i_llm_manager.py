@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 
-class LLMManagerInterface(ABC):
+class ILLMManager(ABC):
 
     @abstractmethod
     def get_client(self):
