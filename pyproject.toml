@@ -10,6 +10,7 @@ python = ">3.11"
 fastapi = ">=0.116.1,<0.117.0"
 uvicorn = "*"
 openai = ">=1.97.1,<2.0.0"
+dotenv = "^0.9.9"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.3.0"

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from tools.tool_schemas import FunctionSchema
+from .tool_schemas import FunctionSchema
 
 
 class Tool(ABC):
