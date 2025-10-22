@@ -6,7 +6,7 @@ authors = ["ylich <vyboluarte@minsait.com>"]
 package-mode= false
 
 [tool.poetry.dependencies]
-python = ">3.11"
+python = "=3.11"
 fastapi = ">=0.116.1,<0.117.0"
 uvicorn = "*"
 openai = ">=1.97.1,<2.0.0"
