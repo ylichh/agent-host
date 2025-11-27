@@ -9,6 +9,7 @@ from ..domain.repositories.i_memory import (
 from ..domain.repositories.i_repositories import IUserRepository
 from ..domain.services.llm_manager.i_llm_manager import ILLMManager
 from ..domain.entities import Usuario
+
 GPT_MODEL = "gpt-4.1"
 
 AGENT_PROMPT = """Eres un asistente que coordina herramientas 
@@ -80,18 +81,22 @@ class Supervisor:
         for call in output:
             self.manage_call(call, output_text)
 
+
 class CreateUser:
     def __init__(self, user_repository: IUserRepository):
         self.user_repository = user_repository
 
     def execute(self, id, nombre, email=None):
-        self.user_repository.create_user(
-            Usuario(id=id, nombre=nombre, email=email))
-        
+        self.user_repository.create_user(Usuario(user_id=id, name=nombre, email=email))
+
+
 class AnswerQuestion:
-    def __init__(self, user_repository: IUserRepository, conversation_manager: IConversationManager):
+    def __init__(
+        self,
+        user_repository: IUserRepository,
+        conversation_manager: IConversationManager,
+    ):
         self.conversation_manager = conversation_manager
 
     def execute(self, question: str):
         self.conversation_manager.answer_question(question)
-        
