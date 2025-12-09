@@ -4,7 +4,7 @@ from ..domain.services.tools.i_tool import Tool
 
 # Assuming WheaterAgent is defined in tools/wheather.py
 from ..domain.repositories.i_memory import (
-    IMemory,
+    IConversationMemory,
 )
 from ..domain.repositories.i_repositories import IUserRepository
 from ..domain.services.llm_manager.i_llm_manager import ILLMManager
@@ -23,7 +23,7 @@ class Supervisor:
     def __init__(
         self,
         llm_manager: ILLMManager,
-        memory_manager: IMemory,
+        memory_manager: IConversationMemory,
         agent_prompt,
     ):
         self.name = "Supervisor"
