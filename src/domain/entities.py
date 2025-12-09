@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, List
 
@@ -18,12 +18,19 @@ class UserInteraction:
 
 
 @dataclass
-class Message:
-    order: str
+class AssistantResponse:
     text: str
     payload: dict
     timestamp: datetime
+
+
+@dataclass
+class Message:
+    order: int
+    text: str
     emitter: str  # "bot" o "user"
+    payload: dict = field(default_factory=dict)
+    timestamp: datetime = None
 
 
 @dataclass
