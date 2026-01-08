@@ -5,8 +5,12 @@ from langchain.agents import create_agent
 
 from src.domain.services.agent.i_agent import IAgent
 from src.domain.entities import UserInteraction, AssistantResponse, Message
-from src.adapters.langchain.weather_tool import obtener_tiempo
 from src.adapters.utilities.openai_utilities import parse_to_openai_spec
+from src.adapters.langchain.i_tool import ILangTool
+from src.adapters.langchain.tool_creation import (
+    crear_obtener_clima,
+    crear_obtener_tiempo,
+)
 
 
 class Agent(IAgent):
@@ -15,10 +19,20 @@ class Agent(IAgent):
         system_prompt: str,
         openai_key: str,
         model: str,
+        weather_tool: ILangTool,
+        climate_tool: ILangTool,
     ):
+        weather_tool = weather_tool
+        climate_tool = climate_tool
 
         self.agent_model = ChatOpenAI(api_key=openai_key, model=model)
-        self.agent = create_agent(model=self.agent_model, tools=[obtener_tiempo])
+        self.agent = create_agent(
+            model=self.agent_model,
+            tools=[
+                crear_obtener_tiempo(weather_tool),
+                crear_obtener_clima(climate_tool),
+            ],
+        )
         self.prompt = system_prompt
 
     def answer_question(
